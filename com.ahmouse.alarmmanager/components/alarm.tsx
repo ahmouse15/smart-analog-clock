@@ -94,7 +94,7 @@ export function AlarmSettingsModal(props: AlarmSettingsModalProps) {
       width: '80%',
       maxHeight: 400,
       maxWidth: 300,
-      backgroundColor: theme.colors.primaryContainer,
+      backgroundColor: theme.colors.surface,
       borderRadius: 20,
       alignSelf: 'center',
       padding: 10
@@ -155,7 +155,7 @@ export function AlarmList(props: AlarmListProps) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme.colors.primaryContainer,
+      backgroundColor: 'transparent',
       alignItems: 'center',
       justifyContent: 'flex-start',
       marginTop: 20

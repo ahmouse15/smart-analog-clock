@@ -11,11 +11,11 @@ export default function App() {
     rootContainer: {
       width: '100%',
       height: '100%',
-      backgroundColor: theme.colors.primaryContainer,
+      backgroundColor: theme.colors.surface,
     },
     container: {
       flex: 1,
-      backgroundColor: theme.colors.primaryContainer,
+      backgroundColor: theme.colors.surface,
       alignItems: 'center',
       justifyContent: 'flex-start',
       marginTop: 20
