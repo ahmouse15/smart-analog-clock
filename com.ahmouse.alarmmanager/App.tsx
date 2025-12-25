@@ -24,6 +24,7 @@ export default function App() {
 
     },
     addButton: {
+      backgroundColor: '',
       position: 'absolute',
       right: '10%',
       bottom: '10%',

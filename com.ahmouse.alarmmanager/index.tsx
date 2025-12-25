@@ -3,6 +3,7 @@ import { registerRootComponent } from 'expo';
 import App from './App';
 import {PaperProvider } from 'react-native-paper';
 
+const theme = {};
 
 export default function Main() {
   return (
