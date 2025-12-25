@@ -133,7 +133,7 @@ export function AlarmSettingsModal(props: AlarmSettingsModalProps) {
         <Modal style={styles.modal} visible={props.visible}>
           <View style={styles.container}>
             <Text variant="displayLarge" onPress={() => {setPickerVisible(true)}}>
-              {toTimeStr(props.alarm.time)}
+              {toTimeStr(alarmPending.time)}
             </Text>
 
             <View style={styles.buttonContainer}>
@@ -144,8 +144,8 @@ export function AlarmSettingsModal(props: AlarmSettingsModalProps) {
             visible={pickerVisible}
             onDismiss={() => {setPickerVisible(false)}}
             onConfirm={updatePendingTime}
-            hours={props.alarm.time.getHours()}
-            minutes={props.alarm.time.getMinutes()}
+            hours={alarmPending.time.getHours()}
+            minutes={alarmPending.time.getMinutes()}
           />
           </View>
         </Modal>
