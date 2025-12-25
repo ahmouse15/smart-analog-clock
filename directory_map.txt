@@ -1,0 +1,7 @@
+.
+├── com.ahmouse.alarmmanager -- The Android companion mobile app, used to set the time and alarms over Bluetooth LE
+│   ├── assets -- Static assets such as images or other blobs that don't need compiling
+│   └── components -- UI components
+└── design -- Contains design files and notes related to hardware design and reverse engineering
+    ├── pcb -- Initial PCB layout
+    └── tiva_poc -- Proof-of-concept motor driving software, used to verify the feasibility of the project. Runs on TM4C123GXL board.
