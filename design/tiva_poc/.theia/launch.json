@@ -1,0 +1,58 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "project",
+            "type": "ccs-debug",
+            "request": "launch",
+            "projectInfo": {
+                "name": "final_project",
+                "resourceId": "/final_project"
+            },
+            "connections": [
+                {
+                    "name": "Stellaris In-Circuit Debug Interface_0",
+                    "cores": [
+                        {
+                            "name": "CORTEX_M4_0",
+                            "debuggerSettings": {
+                                "data": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\n<PropertyValues>\n\n  <property id=\"FlashFiles\">\n    <curValue></curValue>\n  </property>\n\n</PropertyValues>\n"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "final_project",
+            "type": "ccs-debug",
+            "request": "launch",
+            "projectInfo": {
+                "name": "final_project",
+                "resourceId": "/final_project"
+            }
+        },
+        {
+            "name": "src",
+            "type": "ccs-debug",
+            "request": "launch",
+            "projectInfo": {
+                "name": "src",
+                "resourceId": "/src"
+            },
+            "connections": [
+                {
+                    "name": "Stellaris In-Circuit Debug Interface_0",
+                    "cores": [
+                        {
+                            "name": "CORTEX_M4_0",
+                            "debuggerSettings": {
+                                "data": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\n<PropertyValues/>\n"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

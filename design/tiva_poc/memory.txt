@@ -1,0 +1,14 @@
+Flash:
+Starts @ 0x0000.0000
+Ends @ 0x0004.0000
+Length = 256KiB
+
+Peripheral:
+Starts @ 0x4000.0000
+Ends @ 0x5FFF.FFFF
+Length = 512 MiB - 1 byte
+
+SRAM:
+Starts @ 0x2000.0000
+Ends @ 0x2000.8000
+Length = 32KiB

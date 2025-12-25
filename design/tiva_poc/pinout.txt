@@ -1,0 +1,13 @@
+Pushbutton ports from left to right:
+PE3
+PE2
+PE1
+PE4
+PE5
+PD6
+
+LEDs:
+Green - PE0
+Yellow - PA2
+Orange - PA3
+Red - PA4

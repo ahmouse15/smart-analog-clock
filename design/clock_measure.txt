@@ -1,0 +1,15 @@
+Clock setting gear:
+17.5 rotations for full cycle of clock
+11 teeth
+outer radius: ~4.5mm
+tooth protusion: 0.5mm
+tooth height: ~2.5mm
+pressure angle: ~20 degrees
+
+
+Motor w/ gearbox:
+12mm radius
+width cut to 9mm
+height 24mm
+gearbox portion is 12mm x 9mm
+shaft is 3mm but with one side cut to 2.5mm
