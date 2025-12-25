@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Button, Modal, Portal, Switch, Text, TouchableRipple, useTheme } from 'react-native-paper';
+import { TimePickerModal } from 'react-native-paper-dates';
 import { StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native';
 import { UUIDTypes, v4 as uuidv4 } from 'uuid';
@@ -22,6 +23,13 @@ type AlarmSettingsModalProps = AlarmProps & {
   visible: boolean,
   closeModal: () => void
 };
+
+function toTimeStr(time: Date) {
+  let hours = time.getHours().toString();
+  let minutes = time.getMinutes().toString();
+
+  return [hours.padStart(2, '0'), minutes.padEnd(2, '0')].join(':');
+}
 
 export function AlarmListItem(props: AlarmProps) {
   const theme = useTheme();
@@ -50,7 +58,7 @@ export function AlarmListItem(props: AlarmProps) {
   });
 
   // Extract hours and minutes in locale-specific manner
-  let timeStr = [props.alarm.time.getHours(), props.alarm.time.getMinutes()].join(':');
+  let timeStr = toTimeStr(props.alarm.time);
 
   return (
     <TouchableRipple style={styles.rippleContainer} disabled={false} onPress={() => {setModalVisible(true)}}>
@@ -75,28 +83,67 @@ export function AlarmListItem(props: AlarmProps) {
 export function AlarmSettingsModal(props: AlarmSettingsModalProps) {
   const theme = useTheme();
 
+  const [pickerVisible, setPickerVisible] = useState(false);
+
   const styles = StyleSheet.create({
+    modal: {
+    },
     container: {
-      flex: 1,
+      justifyContent: 'space-between',
+      height: 'auto',
+      width: '80%',
+      maxHeight: 400,
+      maxWidth: 300,
       backgroundColor: theme.colors.primaryContainer,
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      marginTop: 20
+      borderRadius: 20,
+      alignSelf: 'center',
+      padding: 10
+    },
+    buttonContainer: {
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      bottom: 0,
+    },
+    button: {
+      margin: 2
     }
   });
 
+  //Pending changes stored here
+  let alarmPending: Alarm = {...props.alarm};
+
+  function updatePendingTime(hoursAndMinutes: {hours: number; minutes: number;}) {
+    alarmPending.time.setHours(hoursAndMinutes.hours, hoursAndMinutes.minutes);
+
+    setPickerVisible(false);
+  }
+
   function saveAlarm() {
-    //TODO: Alarm save logic here
+    //TODO: Commit alarmPending changes
     
     props.closeModal();
   };
 
   return (
       <Portal>
-        <Modal visible={props.visible}>
-          <Text>Placeholder</Text>
-          <Button onPress={props.closeModal}>Close</Button>
-          <Button onPress={saveAlarm}>Save</Button>
+        <Modal style={styles.modal} visible={props.visible}>
+          <View style={styles.container}>
+            <Text variant="displayLarge" onPress={() => {setPickerVisible(true)}}>
+              {toTimeStr(props.alarm.time)}
+            </Text>
+
+            <View style={styles.buttonContainer}>
+              <Button style={styles.button} onPress={props.closeModal}>Close</Button>
+              <Button style={styles.button} onPress={saveAlarm}>Save</Button>
+            </View>
+          <TimePickerModal
+            visible={pickerVisible}
+            onDismiss={() => {setPickerVisible(false)}}
+            onConfirm={updatePendingTime}
+            hours={props.alarm.time.getHours()}
+            minutes={props.alarm.time.getMinutes()}
+          />
+          </View>
         </Modal>
       </Portal>
   );
