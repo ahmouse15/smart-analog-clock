@@ -20,11 +20,13 @@ type AlarmListProps = {
 
 type AlarmSettingsModalProps = AlarmProps & {
   visible: boolean,
-  onPressClose: () => {}
+  closeModal: () => void
 };
 
 export function AlarmListItem(props: AlarmProps) {
   const theme = useTheme();
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const styles = StyleSheet.create({
     rippleContainer: {
@@ -51,7 +53,7 @@ export function AlarmListItem(props: AlarmProps) {
   let timeStr = [props.alarm.time.getHours(), props.alarm.time.getMinutes()].join(':');
 
   return (
-    <TouchableRipple style={styles.rippleContainer} disabled={false}>
+    <TouchableRipple style={styles.rippleContainer} disabled={false} onPress={() => {setModalVisible(true)}}>
       <View style={styles.container}>
         <View style={styles.leftContainer}>
           <Text variant="displayLarge">{timeStr}</Text>
@@ -60,6 +62,11 @@ export function AlarmListItem(props: AlarmProps) {
         <View style={styles.rightContainer}>
           <Switch/>
         </View>
+        <AlarmSettingsModal 
+          closeModal={() => {setModalVisible(false)}}
+          visible={modalVisible}
+          alarm={props.alarm}
+        />
       </View>
     </TouchableRipple>
   );
@@ -78,22 +85,25 @@ export function AlarmSettingsModal(props: AlarmSettingsModalProps) {
     }
   });
 
+  function saveAlarm() {
+    //TODO: Alarm save logic here
+    
+    props.closeModal();
+  };
+
   return (
-      <View style={styles.container}>
-        <Portal>
-          <Modal visible={props.visible}>
-            <Text>Placeholder</Text>
-            <Button onPress={props.onPressClose}>Close</Button>
-          </Modal>
-        </Portal>
-      </View>
+      <Portal>
+        <Modal visible={props.visible}>
+          <Text>Placeholder</Text>
+          <Button onPress={props.closeModal}>Close</Button>
+          <Button onPress={saveAlarm}>Save</Button>
+        </Modal>
+      </Portal>
   );
 }
 
 export function AlarmList(props: AlarmListProps) {
   const theme = useTheme();
-
-  //TODO: for x in
 
   const styles = StyleSheet.create({
     container: {
