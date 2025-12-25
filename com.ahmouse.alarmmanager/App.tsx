@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import {AlarmList} from './components/alarm';
 import { Appbar, FAB, Portal, useTheme } from 'react-native-paper';
+import { createTimeObject } from './lib/time';
 
 export default function App() {
   const theme = useTheme();
@@ -24,21 +25,22 @@ export default function App() {
 
     },
     addButton: {
-      backgroundColor: '',
       position: 'absolute',
-      right: '10%',
-      bottom: '10%',
+      right: 0,
+      bottom: 0,
+      marginRight: 36,
+      marginBottom: 96
     }
   });
 
   let alarms = [
     {
       id: '1',
-      time: new Date(1980, 1, 5, 10, 30)
+      time: createTimeObject(10, 30)
     },
     {
       id: '2',
-      time: new Date(1980, 1, 5, 12, 23)
+      time: createTimeObject(12, 23)
     },
   ];
 

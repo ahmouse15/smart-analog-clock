@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native';
 import { UUIDTypes, v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
+import { createTimeObject } from '../lib/time';
 
 type Alarm = {
   id: string,
@@ -110,7 +111,10 @@ export function AlarmSettingsModal(props: AlarmSettingsModalProps) {
   });
 
   //Pending changes stored here
-  let alarmPending: Alarm = {...props.alarm};
+  let alarmPending: Alarm = {
+    id: props.alarm.id,
+    time: createTimeObject(props.alarm.time.getHours(), props.alarm.time.getMinutes())
+  };
 
   function updatePendingTime(hoursAndMinutes: {hours: number; minutes: number;}) {
     alarmPending.time.setHours(hoursAndMinutes.hours, hoursAndMinutes.minutes);
