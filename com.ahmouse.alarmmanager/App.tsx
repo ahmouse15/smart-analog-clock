@@ -4,8 +4,18 @@ import { StyleSheet, Text, View } from 'react-native';
 import {AlarmList} from './components/alarm';
 import { Appbar, FAB, Portal, useTheme } from 'react-native-paper';
 import { createTimeObject } from './lib/time';
+import { Alarm } from './types/alarm';
+import { dayOfWeek } from './types/alarm';
+import { getAllAlarms, saveAllAlarms } from './lib/storage';
 
 export default function App() {
+  const [alarms, setAlarms] = React.useState<Array<Alarm>>([]);
+
+  //Load alarms from local storage
+  React.useEffect(() => {
+    getAllAlarms().then(fetchedAlarms => setAlarms(fetchedAlarms));
+  }, );
+
   const theme = useTheme();
 
   const styles = StyleSheet.create({
@@ -33,17 +43,6 @@ export default function App() {
     }
   });
 
-  let alarms = [
-    {
-      id: '1',
-      time: createTimeObject(10, 30)
-    },
-    {
-      id: '2',
-      time: createTimeObject(12, 23)
-    },
-  ];
-
   return (
     <View style={styles.rootContainer}>
       <StatusBar/>
@@ -52,9 +51,9 @@ export default function App() {
         <Appbar.Action icon="menu" onPress={() => {}} />
       </Appbar.Header>
 
-      <AlarmList items={alarms}/>
+      <AlarmList allAlarms={alarms}/>
       <Portal>
-        <FAB icon="plus" style={styles.addButton}/>
+        <FAB icon="plus" style={styles.addButton} onPress={() => {}}/>
       </Portal>
       
     </View>
