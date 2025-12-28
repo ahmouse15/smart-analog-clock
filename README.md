@@ -6,6 +6,7 @@ This is largely split into two sub-projects (each large enough to be their own p
 | Feature               | App | Clock |
 | --------------------- | --  | ----- |
 | UI                    | WIP | N/A   |
+| Keeping time          | N/A | WIP    |
 | Alarm creation        | ❌  | ❌    |
 | Alarm editing         | ✅  | ❌    |
 | Alarm bell            | N/A | ❌    |
